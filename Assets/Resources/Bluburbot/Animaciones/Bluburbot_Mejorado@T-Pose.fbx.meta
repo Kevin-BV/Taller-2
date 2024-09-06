@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 83eae9472bb35a84189663e599b15289
+guid: df9d3dd91f85b7140ae24f9399aa949f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,28 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: CascaraHuevo.001
-    second: {fileID: 2100000, guid: 2afe30fd47d88b440ba4cf0f228c46b1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: CuerpoPollo.001
-    second: {fileID: 2100000, guid: c060caf5d64c6464db581edd5a1f9ad4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Escudo.001
-    second: {fileID: 2100000, guid: a0742e983ab516a43880d70f1c605d1d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Fosforo.001
-    second: {fileID: 2100000, guid: 559504c46eeb8a7478a7bbc22e173e4a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: HuevoCascaraTop.001
-    second: {fileID: 2100000, guid: 05cd85cbcf3f9d94990cea80a3da248b, type: 2}
+      name: BluburbotMat
+    second: {fileID: 2100000, guid: e8d20ac80ec192746bf70230a19c4641, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
