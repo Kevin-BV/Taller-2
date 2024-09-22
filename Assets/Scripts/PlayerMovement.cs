@@ -13,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody rb;
     private bool isGrounded;
-    private Vector3 moveDirection; // Vector para el movimiento
 
     void Start()
     {
@@ -23,12 +22,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Movimiento lateral (izquierda/derecha)
+        // Movimiento lateral (izquierda/derecha) en 3D
         float moveX = Input.GetAxis("Horizontal") * moveSpeed;
-        // Movimiento en profundidad (adelante/atrás)
+        // Movimiento en profundidad (adelante/atrás) en 3D
         float moveZ = Input.GetAxis("Vertical") * moveSpeed;
 
-        // Aplicar movimiento
+        // Aplicar movimiento en 3D
         rb.velocity = new Vector3(moveX, rb.velocity.y, moveZ);
 
         // Verificar si el personaje está en el suelo
@@ -40,19 +39,19 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
-        // Solo rotar en función del movimiento lateral (izquierda/derecha)
+        // Rotación solo cuando el personaje se mueve a los lados
         if (moveX > 0)
         {
-            transform.rotation = Quaternion.Euler(0, 90, 0); // Gira hacia la derecha
+            transform.rotation = Quaternion.Euler(0, 90, 0); // Gira hacia la derecha (en 3D)
         }
         else if (moveX < 0)
         {
-            transform.rotation = Quaternion.Euler(0, -90, 0); // Gira hacia la izquierda
+            transform.rotation = Quaternion.Euler(0, -90, 0); // Gira hacia la izquierda (en 3D)
         }
 
-        // Actualizar el parámetro "Speed" en el Animator
-        float speed = new Vector3(moveX, 0, moveZ).magnitude; // Magnitud del movimiento
-        animator.SetFloat("Speed", speed); // Establecer el parámetro Speed
+        // Actualizar el parámetro "Speed" en el Animator basado en la magnitud del movimiento en 3D
+        float speed = new Vector3(moveX, 0, moveZ).magnitude; // Magnitud del movimiento en 3D
+        animator.SetFloat("Speed", speed); // Establecer el parámetro Speed para controlar la animación
     }
 
     void OnDrawGizmos()
