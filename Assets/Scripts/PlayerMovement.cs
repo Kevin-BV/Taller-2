@@ -9,20 +9,23 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer; // Capa del suelo para verificar si el personaje está en el suelo
     public Transform groundCheck; // Objeto que verifica si el personaje está en el suelo
     public float groundCheckRadius = 0.2f; // Radio para verificar si el personaje está en el suelo
+    public Animator animator; // Referencia al Animator
 
     private Rigidbody rb;
     private bool isGrounded;
+    private Vector3 moveDirection; // Vector para el movimiento
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>(); // Obtener el componente Animator del personaje
     }
 
     void Update()
     {
         // Movimiento lateral (izquierda/derecha)
         float moveX = Input.GetAxis("Horizontal") * moveSpeed;
-        // Movimiento hacia adelante/atrás (opcional)
+        // Movimiento en profundidad (adelante/atrás)
         float moveZ = Input.GetAxis("Vertical") * moveSpeed;
 
         // Aplicar movimiento
@@ -36,6 +39,20 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
+
+        // Solo rotar en función del movimiento lateral (izquierda/derecha)
+        if (moveX > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 90, 0); // Gira hacia la derecha
+        }
+        else if (moveX < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, -90, 0); // Gira hacia la izquierda
+        }
+
+        // Actualizar el parámetro "Speed" en el Animator
+        float speed = new Vector3(moveX, 0, moveZ).magnitude; // Magnitud del movimiento
+        animator.SetFloat("Speed", speed); // Establecer el parámetro Speed
     }
 
     void OnDrawGizmos()
