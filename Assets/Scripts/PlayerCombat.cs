@@ -32,10 +32,20 @@ public class PlayerCombat : MonoBehaviour
         {
             if (enemy.CompareTag("Enemy")) // Asegúrate de que el enemigo tenga la etiqueta "Enemy"
             {
+                BossHealth bossHealth = enemy.GetComponent<BossHealth>();
                 EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
-                if (enemyHealth != null) // Verificar que el enemigo tenga el componente EnemyHealth
+
+                // Si es un boss
+                if (bossHealth != null)
+                {
+                    bossHealth.TakeDamage(attackDamage);
+                    Debug.Log("Boss hit!"); // Mensaje de depuración al golpear al jefe
+                }
+                // Si es un enemigo normal
+                else if (enemyHealth != null)
                 {
                     enemyHealth.TakeDamage(attackDamage);
+                    Debug.Log("Enemy hit!"); // Mensaje de depuración al golpear a un enemigo normal
                 }
             }
         }
