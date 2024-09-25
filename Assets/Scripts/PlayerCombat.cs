@@ -30,7 +30,14 @@ public class PlayerCombat : MonoBehaviour
         // Aplicar daño a los enemigos
         foreach (Collider enemy in hitEnemies)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage); // Suponemos que los enemigos tienen un método TakeDamage
+            if (enemy.CompareTag("Enemy")) // Asegúrate de que el enemigo tenga la etiqueta "Enemy"
+            {
+                EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+                if (enemyHealth != null) // Verificar que el enemigo tenga el componente EnemyHealth
+                {
+                    enemyHealth.TakeDamage(attackDamage);
+                }
+            }
         }
     }
 
