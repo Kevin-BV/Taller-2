@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody rb;
     private bool isGrounded;
+    private bool isJumping; // Para controlar el estado de salto
 
     void Start()
     {
@@ -33,10 +34,27 @@ public class PlayerMovement : MonoBehaviour
         // Verificar si el personaje está en el suelo
         isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
 
+        // Control de la animación de salto
+        if (isGrounded && !isJumping) // Si el personaje está en el suelo y no está saltando
+        {
+            animator.SetBool("IsJumping", false); // Desactiva la animación de salto
+            float speed = new Vector3(moveX, 0, moveZ).magnitude;
+            animator.SetFloat("Speed", speed); // Mantiene las animaciones de Idle o Walk
+        }
+
         // Saltar si el personaje está en el suelo y se presiona la tecla de salto
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isJumping = true; // Ahora el personaje está en el aire
+            animator.SetBool("IsJumping", true); // Activa la animación de salto
+        }
+
+        // Detectar cuando el personaje aterriza
+        if (isJumping && isGrounded)
+        {
+            isJumping = false; // El personaje ya no está en el aire
+            animator.SetBool("IsJumping", false); // Desactiva la animación de salto
         }
 
         // Rotación solo cuando el personaje se mueve a los lados
@@ -48,10 +66,6 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, -90, 0); // Gira hacia la izquierda (en 3D)
         }
-
-        // Actualizar el parámetro "Speed" en el Animator basado en la magnitud del movimiento en 3D
-        float speed = new Vector3(moveX, 0, moveZ).magnitude; // Magnitud del movimiento en 3D
-        animator.SetFloat("Speed", speed); // Establecer el parámetro Speed para controlar la animación
     }
 
     void OnDrawGizmos()
