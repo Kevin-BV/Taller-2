@@ -6,6 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: "Assets/Scenes/Men\xFAPrincipal.unity"
+    guid: be51953ef1bc0914ea9ae64ea04a634c
+  - enabled: 1
+    path: Assets/Scenes/Nivel_Tutorial.unity
+    guid: fcbe58b3e00284b428809fa111f8d14d
+  - enabled: 1
+    path: Assets/Scenes/Nivel_01.unity
+    guid: 8fcc4c8fa2f78e74b817487c7281d75f
+  - enabled: 1
+    path: Assets/Scenes/Nivel_02.unity
+    guid: 3db28e77608a2e94fb01fb9257d48ea4
+  - enabled: 1
+    path: Assets/Scenes/Nivel_03.unity
+    guid: 6e61961ecb34c1444aecdd2094c218c3
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects: {}
