@@ -2251,8 +2251,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1371283015}
-  - component: {fileID: 1371283014}
   - component: {fileID: 1371283013}
+  - component: {fileID: 1371283016}
   m_Layer: 0
   m_Name: CambioEscena
   m_TagString: Untagged
@@ -2275,25 +2275,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 4.692627, y: 8.556274, z: 13.827393}
   m_Center: {x: -0.54455566, y: 0.2710266, z: 1.6467285}
---- !u!114 &1371283014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1371283012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48760096adb2a4040a79ea94f10bdf9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  escenaToLoad: Nivel_01
 --- !u!4 &1371283015
 Transform:
   m_ObjectHideFlags: 0
@@ -2309,6 +2296,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1371283016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371283012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453929165e1e4f142bfecade44819928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: Nivel_01
 --- !u!1 &1373256768 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: df9d3dd91f85b7140ae24f9399aa949f,

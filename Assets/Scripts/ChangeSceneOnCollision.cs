@@ -1,7 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement; // Necesario para cargar escenas
 
-public class CambioEscena : MonoBehaviour
+public class ChangeSceneOnCollision : MonoBehaviour
 {
+    [Header("Escena a cargar al colisionar")]
     public string sceneToLoad; // Nombre de la escena que deseas cargar
 
     private void OnTriggerEnter(Collider other)
