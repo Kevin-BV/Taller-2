@@ -31,30 +31,28 @@ public class PlayerMovement : MonoBehaviour
         // Aplicar movimiento en 3D
         rb.velocity = new Vector3(moveX, rb.velocity.y, moveZ);
 
-        // Verificar si el personaje está en el suelo
+        // Verificar si el personaje está en el suelo usando una esfera debajo del personaje
         isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
 
         // Control de la animación de salto
-        if (isGrounded && !isJumping) // Si el personaje está en el suelo y no está saltando
+        if (isGrounded) // Si el personaje está en el suelo
         {
             animator.SetBool("IsJumping", false); // Desactiva la animación de salto
             float speed = new Vector3(moveX, 0, moveZ).magnitude;
-            animator.SetFloat("Speed", speed); // Mantiene las animaciones de Idle o Walk
+            animator.SetFloat("Speed", speed); // Actualiza las animaciones de Idle o Walk
         }
 
         // Saltar si el personaje está en el suelo y se presiona la tecla de salto
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isJumping = true; // Ahora el personaje está en el aire
             animator.SetBool("IsJumping", true); // Activa la animación de salto
         }
 
         // Detectar cuando el personaje aterriza
-        if (isJumping && isGrounded)
+        if (!isGrounded && rb.velocity.y < 0) // Si está cayendo
         {
-            isJumping = false; // El personaje ya no está en el aire
-            animator.SetBool("IsJumping", false); // Desactiva la animación de salto
+            animator.SetBool("IsJumping", true); // Mantiene la animación de salto activa hasta aterrizar
         }
 
         // Rotación solo cuando el personaje se mueve a los lados
