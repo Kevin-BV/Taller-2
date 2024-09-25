@@ -16,7 +16,6 @@ public class EnemyAI : MonoBehaviour
     private bool playerInRange = false;
     private float nextAttackTime = 0f; // Control del tiempo entre ataques
     private bool isAttacking = false;
-    private bool isWalking = false;
 
     void Update()
     {
@@ -52,23 +51,24 @@ public class EnemyAI : MonoBehaviour
     {
         // Obtener la dirección hacia el jugador en el eje X
         Vector3 direction = player.position - transform.position;
-        direction.y = 0; // Ignorar cualquier diferencia en el eje Y (evitar rotaciones arriba/abajo)
-
-        // Si el enemigo está moviéndose, activar la animación de caminar
-        if (!isWalking)
-        {
-            StartWalking();
-        }
+        direction.y = 0; // Ignorar cualquier diferencia en el eje Y
 
         // Mover al enemigo hacia el jugador en el eje X solamente
         if (direction.x != 0)
         {
-            // Solo rotar en el eje Y para mirar a la izquierda o derecha (ignorar eje Z y Y)
+            // Solo rotar en el eje Y para mirar a la izquierda o derecha
             float lookDirection = direction.x > 0 ? 90f : -90f; // Mirar hacia la derecha (90) o izquierda (-90)
             transform.rotation = Quaternion.Euler(0, lookDirection, 0); // Solo afecta el eje Y
 
-            // Mover hacia el jugador en el eje X sin cambiar el Y o Z
+            // Mover hacia el jugador en el eje X sin cambiar el Y
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.position.x, transform.position.y, transform.position.z), moveSpeed * Time.deltaTime);
+
+            // Activar la animación de caminar
+            StartWalking();
+        }
+        else
+        {
+            StopWalking();
         }
     }
 
@@ -98,13 +98,11 @@ public class EnemyAI : MonoBehaviour
 
     void StartWalking()
     {
-        isWalking = true;
         animator.SetBool("isWalking", true); // Activar la animación de caminar
     }
 
     void StopWalking()
     {
-        isWalking = false;
         animator.SetBool("isWalking", false); // Desactivar la animación de caminar
     }
 
