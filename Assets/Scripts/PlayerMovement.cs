@@ -23,6 +23,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        // Comprobar si hay enemigos en la escena
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+        {
+            animator.SetTrigger("Dancing"); // Activar animación de Dancing si no hay enemigos
+            return; // Salir del Update si no hay enemigos
+        }
+
         // Movimiento lateral (izquierda/derecha) en 3D
         float moveX = Input.GetAxis("Horizontal") * moveSpeed;
         // Movimiento en profundidad (adelante/atrás) en 3D
