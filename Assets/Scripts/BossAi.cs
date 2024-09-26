@@ -14,6 +14,8 @@ public class BossAI : MonoBehaviour
 
     public float hurricaneKickDuration = 4f; // Duración del Hurricane Kick, configurable desde el inspector
     public float idleDuration = 3f; // Duración de la animación de idle después de 3 golpes
+    public int mutantPunchDamage = 10; // Daño del Mutant Punch, configurable desde el inspector
+    public int hurricaneKickDamage = 15; // Daño del Hurricane Kick, configurable desde el inspector
 
     private float nextAttackTime = 0f; // Temporizador para el siguiente ataque
     private int attackCount = 0; // Contador de ataques al jugador
@@ -125,8 +127,11 @@ public class BossAI : MonoBehaviour
             idleTimer = 0f; // Reiniciar el temporizador de idle
         }
 
-        // Aquí puedes agregar lógica para aplicar daño al jugador
-        // Ejemplo: player.GetComponent<PlayerHealth>().TakeDamage(damageAmount);
+        // Aplicar daño al jugador
+        if (player.GetComponent<PlayerHealth>() != null)
+        {
+            player.GetComponent<PlayerHealth>().TakeDamage(mutantPunchDamage); // Suponiendo que el jugador tiene un método TakeDamage()
+        }
     }
 
     private void ExecuteHurricaneKick()
@@ -138,8 +143,11 @@ public class BossAI : MonoBehaviour
         // Reproducir animación de Hurricane Kick
         animator.SetTrigger("HurricaneKick"); // Asegúrate de tener esta animación configurada
 
-        // Aquí puedes agregar lógica para aplicar daño al jugador con el Hurricane Kick
-        // Ejemplo: player.GetComponent<PlayerHealth>().TakeDamage(damageAmount);
+        // Aplicar daño al jugador con el Hurricane Kick
+        if (player.GetComponent<PlayerHealth>() != null)
+        {
+            player.GetComponent<PlayerHealth>().TakeDamage(hurricaneKickDamage); // Aplicar daño del Hurricane Kick
+        }
     }
 
     private void OnDrawGizmosSelected()
