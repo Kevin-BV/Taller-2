@@ -21,7 +21,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f49a5c16034137548ae58300381f56ea,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f49a5c16034137548ae58300381f56ea,
         type: 3}
@@ -340,9 +340,8 @@ MonoBehaviour:
   detectionRange: 20
   attackRange: 1.5
   moveSpeed: 2
-  attackCooldown: 3
   attackDamage: 10
-  stopDuration: 1
+  attackCooldown: 3
 --- !u!95 &1272351441407852466
 Animator:
   serializedVersion: 5
