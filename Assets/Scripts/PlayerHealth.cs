@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100; // Salud máxima del jugador
     public int currentHealth; // Salud actual del jugador
+    public GameObject gameOverMenu; // Referencia al menú de Game Over
 
     // Evento de salud para efectos visuales o interfaces
     public delegate void OnHealthChanged(int health);
@@ -38,6 +39,12 @@ public class PlayerHealth : MonoBehaviour
     // Método para que el jugador muera
     void Die()
     {
+        // Activar el menú de Game Over
+        if (gameOverMenu != null)
+        {
+            gameOverMenu.SetActive(true); // Mostrar el menú de Game Over
+        }
+
         // Aquí puedes poner lo que sucede cuando el jugador muere (animación de muerte, reinicio del nivel, etc.)
         Debug.Log("El jugador ha muerto.");
         // Por ejemplo, podrías desactivar al jugador
